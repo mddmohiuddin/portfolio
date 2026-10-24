@@ -1,0 +1,22 @@
+/* Advanced portfolio enhancements */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:none}
+nav a.nav-link.active{color:#38bdf8!important;position:relative}
+nav a.nav-link.active::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg,#0ea5e9,#22d3ee);border-radius:2px}
+#mobile-menu{max-height:0;overflow:hidden;transition:max-height .35s ease}
+#mobile-menu.open{max-height:480px}
+.gradient-text{background:linear-gradient(135deg,#38bdf8,#22d3ee,#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card-lift{transition:transform .3s,border-color .3s,box-shadow .3s}
+.card-lift:hover{transform:translateY(-4px);box-shadow:0 12px 40px -12px rgba(14,165,233,.25)}
+#lightbox{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;padding:1rem}
+#lightbox.open{display:flex}
+#lightbox img{max-width:min(92vw,1100px);max-height:82vh;object-fit:contain;border-radius:12px;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:9999px;background:rgba(30,41,59,.8);border:1px solid rgba(148,163,184,.3);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.lb-btn:hover{background:rgba(14,165,233,.4)}
+.lb-prev{left:12px}.lb-next{right:12px}
+.lb-close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:9999px;background:rgba(30,41,59,.8);border:1px solid rgba(148,163,184,.3);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+#back-to-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:9999px;background:rgba(14,165,233,.9);color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:40;border:none;cursor:pointer;box-shadow:0 8px 24px -4px rgba(14,165,233,.4)}
+#back-to-top.show{opacity:1;pointer-events:auto;transform:none}
+#scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#0ea5e9,#22d3ee);width:0%;z-index:60}
+.skill-tag{transition:background .2s,color .2s,transform .2s}
+.skill-tag:hover{background:rgba(14,165,233,.2)!important;color:#7dd3fc!important;transform:scale(1.05)}
