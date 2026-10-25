@@ -1,0 +1,4 @@
+# build tooling (the compiled output in assets/ IS committed — GitHub Pages is static)
+node_modules/
+package-lock.json.bak
+.DS_Store

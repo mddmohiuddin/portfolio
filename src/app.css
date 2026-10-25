@@ -1,0 +1,534 @@
+/* ============================================================
+   Source stylesheet — compiled by Tailwind into assets/site.css
+   npm run build
+   ============================================================ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Self-hosted fonts (no third-party request before first paint) ===== */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/plus-jakarta-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/plus-jakarta-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/plus-jakarta-600.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/plus-jakarta-700.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('fonts/plus-jakarta-800.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/instrument-serif-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/instrument-serif-400-italic.woff2') format('woff2');
+}
+
+    /* ==========================================================
+       DESIGN TOKENS
+       Dark is the default; `html.light` overrides every token.
+       Tailwind's slate / sky / emerald / amber palettes are mapped
+       onto these variables, so all utility classes re-theme for free.
+       ========================================================== */
+    :root {
+      color-scheme: dark;
+
+      --c-canvas: 7 10 18;          /* page background  */
+      --c-surface: 11 18 32;        /* floating panels  */
+      --c-ink: 255 255 255;         /* strongest text   */
+
+      --slate-50: 248 250 252;
+      --slate-100: 241 245 249;
+      --slate-200: 226 232 240;
+      --slate-300: 203 213 225;
+      --slate-400: 148 163 184;
+      --slate-500: 100 116 139;
+      --slate-600: 71 85 105;
+      --slate-700: 51 65 85;
+      --slate-800: 30 41 59;
+      --slate-900: 15 23 42;
+      --slate-950: 2 6 23;
+
+      --sky-200: 186 230 253;
+      --sky-300: 125 211 252;
+      --sky-400: 56 189 248;
+      --sky-500: 14 165 233;
+      --sky-600: 2 132 199;
+      --sky-700: 3 105 161;
+      --sky-800: 7 89 133;
+      --sky-900: 12 74 110;
+      --sky-950: 8 47 73;
+
+      --emerald-300: 110 231 183;
+      --emerald-400: 52 211 153;
+      --emerald-500: 16 185 129;
+      --emerald-600: 5 150 105;
+      --emerald-700: 4 120 87;
+
+      --amber-300: 252 211 77;
+      --amber-400: 251 191 36;
+      --amber-500: 245 158 11;
+      --amber-600: 217 119 6;
+
+      --grid-dot: 14 165 233;
+      --grid-dot-alpha: 0.08;
+      --spotlight: 56 189 248;
+      --glow-opacity: 1;
+      --header-bg-alpha: 0.85;
+    }
+
+    /* Warm "technical paper" light theme.
+       Teal replaces sky: sky-400 on white fails contrast (~2.2:1),
+       teal-700 clears 4.5:1 for body text and links. */
+    html.light {
+      color-scheme: light;
+
+      --c-canvas: 250 249 246;
+      --c-surface: 255 255 255;
+      --c-ink: 17 20 26;
+
+      --slate-50: 11 12 15;
+      --slate-100: 19 22 27;
+      --slate-200: 33 39 47;
+      --slate-300: 54 62 72;
+      --slate-400: 94 102 114;
+      --slate-500: 103 112 124;
+      --slate-600: 160 166 176;
+      --slate-700: 221 216 206;
+      --slate-800: 233 229 221;
+      --slate-900: 255 255 255;
+      --slate-950: 245 243 237;
+
+      --sky-200: 19 78 74;
+      --sky-300: 17 94 89;
+      --sky-400: 15 118 110;
+      --sky-500: 13 148 136;
+      --sky-600: 15 118 110;
+      --sky-700: 17 94 89;
+      --sky-800: 153 246 228;
+      --sky-900: 204 251 241;
+      --sky-950: 240 253 250;
+
+      --emerald-300: 4 120 87;
+      --emerald-400: 4 120 87;
+      --emerald-500: 5 150 105;
+      --emerald-600: 4 120 87;
+      --emerald-700: 6 95 70;
+
+      --amber-300: 146 64 14;
+      --amber-400: 180 83 9;
+      --amber-500: 217 119 6;
+      --amber-600: 194 65 12;
+
+      --grid-dot: 15 118 110;
+      --grid-dot-alpha: 0.13;
+      --spotlight: 15 118 110;
+      --glow-opacity: 0.45;
+      --header-bg-alpha: 0.8;
+    }
+
+    html, body {
+      background-color: rgb(var(--c-canvas));
+    }
+    body {
+      color: rgb(var(--slate-100));
+    }
+
+    .grid-blueprint {
+      background-image: radial-gradient(
+        rgb(var(--grid-dot) / var(--grid-dot-alpha)) 1px,
+        transparent 0
+      );
+      background-size: 26px 26px;
+    }
+
+    /* Ambient glow behind the header — softened in light mode */
+    .hero-glow {
+      opacity: var(--glow-opacity);
+    }
+
+    /* ===== Theme toggle ===== */
+    #theme-toggle svg { display: none; }
+    html[data-theme="light"] #theme-toggle .icon-sun,
+    html[data-theme="dark"] #theme-toggle .icon-moon { display: block; }
+    #theme-toggle {
+      color: rgb(var(--slate-400));
+    }
+    #theme-toggle:hover {
+      color: rgb(var(--slate-100));
+      border-color: rgb(var(--sky-500) / 0.6);
+    }
+
+    /* Circular reveal when the theme changes (View Transitions API) */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    /* ===== Reading progress bar ===== */
+    #scroll-progress {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 3px;
+      z-index: 60;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      background: linear-gradient(90deg, rgb(var(--sky-500)), rgb(var(--emerald-400)));
+      pointer-events: none;
+    }
+
+    /* ===== Card spotlight follows the cursor ===== */
+    .spotlight {
+      background-image: radial-gradient(
+        340px circle at var(--mx, 50%) var(--my, 0%),
+        rgb(var(--spotlight) / 0.09),
+        transparent 70%
+      );
+      background-repeat: no-repeat;
+    }
+    html.light .spotlight {
+      background-image: radial-gradient(
+        340px circle at var(--mx, 50%) var(--my, 0%),
+        rgb(var(--spotlight) / 0.055),
+        transparent 70%
+      );
+    }
+
+    /* ===== Section jump bar: active state ===== */
+    .section-nav a {
+      position: relative;
+      transition: color .2s ease;
+    }
+    .section-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -0.65rem;
+      height: 2px;
+      border-radius: 2px;
+      background: rgb(var(--sky-400));
+      transition: right .25s ease;
+    }
+    .section-nav a.is-active {
+      color: rgb(var(--sky-400));
+    }
+    .section-nav a.is-active::after {
+      right: 0;
+    }
+
+    /* ===== Shadows that read correctly on paper ===== */
+    html.light .shadow-sm { box-shadow: 0 1px 2px rgb(17 20 26 / 0.05); }
+    html.light .shadow { box-shadow: 0 1px 3px rgb(17 20 26 / 0.07); }
+    html.light .shadow-md { box-shadow: 0 6px 16px -8px rgb(17 20 26 / 0.16); }
+    html.light .shadow-lg { box-shadow: 0 10px 24px -12px rgb(17 20 26 / 0.18); }
+    html.light .shadow-xl { box-shadow: 0 16px 34px -18px rgb(17 20 26 / 0.22); }
+    html.light .shadow-2xl { box-shadow: 0 22px 48px -24px rgb(17 20 26 / 0.28); }
+
+    /* The white-background portrait needs an edge on a paper-white card */
+    html.light .photo-frame {
+      border-color: rgb(var(--slate-700));
+      box-shadow: 0 1px 2px rgb(17 20 26 / 0.05), 0 20px 42px -26px rgb(17 20 26 / 0.35);
+    }
+    html.light .photo-glow {
+      opacity: 0.18;
+    }
+
+    /* Serif accent — one editorial italic word in the hero */
+    .font-accent {
+      font-family: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    /* ===== Accessibility ===== */
+    :focus-visible {
+      outline: 2px solid rgb(var(--sky-400));
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .skip-link {
+      position: fixed;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 100;
+      transform: translateY(-200%);
+      transition: transform .18s ease;
+    }
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      /* The photo gallery is meant to keep moving on its own — this is the
+         one animation the reduced-motion rule must not switch off. */
+      .marquee-track {
+        animation-name: marquee-scroll !important;
+        animation-duration: var(--marquee-duration, 60s) !important;
+        animation-timing-function: linear !important;
+        animation-iteration-count: infinite !important;
+        animation-play-state: running !important;
+      }
+    }
+
+    /* ===== Print: a clean paper CV ===== */
+    @media print {
+      html, body { background: #fff !important; color: #111 !important; }
+      header, footer, #mohi-bot-toggle, #mohi-bot-panel, #theme-toggle,
+      #scroll-progress, .skip-link, #gallery { display: none !important; }
+      main { max-width: none !important; padding: 0 !important; }
+      section { break-inside: avoid; }
+      * { box-shadow: none !important; text-shadow: none !important; }
+      a { color: #111 !important; text-decoration: none !important; }
+    }
+
+    /* ===== Photo Gallery marquee (right-to-left slideshow) ===== */
+    .marquee-viewport {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+      mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+    }
+    .marquee-track {
+      animation: marquee-scroll var(--marquee-duration, 60s) linear infinite;
+      will-change: transform;
+    }
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    /* Auto-scroll always runs — the slideshow never stops by itself.
+       (No prefers-reduced-motion override: the gallery is meant to move.) */
+    /* Pause on hover only for real mouse pointers — a tap on mobile never freezes it */
+    @media (hover: hover) and (pointer: fine) {
+      .marquee-viewport:hover .marquee-track {
+        animation-play-state: paused;
+      }
+    }
+
+    /* ===== Top section-jump bar & smooth anchor offsets ===== */
+    .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    section[id] { scroll-margin-top: 7.5rem; }
+
+/* ============================================================
+   EEE "blueprint" layer — the visual language of the site.
+   Schematic annotations, measurement marks and instrument styling
+   are what make this read like an engineer's document rather than
+   another dark portfolio template.
+   ============================================================ */
+
+/* ---- FIG. 01 … annotation above every numbered section ---- */
+main { counter-reset: fig; }
+section[id] { position: relative; counter-increment: fig; }
+
+section[id]::before {
+  content: "FIG. " counter(fig, decimal-leading-zero);
+  position: absolute;
+  top: -1.85rem;
+  left: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgb(var(--slate-500));
+  pointer-events: none;
+}
+
+/* short schematic "leader" with two nodes, drawn purely in gradients */
+section[id]::after {
+  content: "";
+  position: absolute;
+  top: -1.8rem;
+  left: 4.9rem;
+  width: 68px;
+  height: 7px;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 3px 50%, rgb(var(--sky-400) / 0.75) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 64px 50%, rgb(var(--slate-500) / 0.6) 0 1.5px, transparent 2px),
+    linear-gradient(90deg, rgb(var(--slate-600) / 0.7), rgb(var(--slate-600) / 0.15));
+  background-repeat: no-repeat;
+  background-size: 7px 7px, 7px 7px, 100% 1px;
+  background-position: 0 50%, 61px 50%, 0 50%;
+}
+
+/* ---- Bento metrics: instrument read-outs ---- */
+.bento { counter-reset: tile; }
+.bento > div {
+  counter-increment: tile;
+  position: relative;
+  transition: border-color .25s ease, transform .25s ease, background-color .25s ease;
+}
+.bento > div:hover { transform: translateY(-2px); border-color: rgb(var(--sky-500) / 0.45); }
+.bento > div::before {
+  content: "0" counter(tile);
+  position: absolute;
+  top: 0.55rem;
+  right: 0.7rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: rgb(var(--slate-500) / 0.75);
+}
+.bento .tile-value { font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+/* Oscilloscope trace in the first metric tile */
+@keyframes scope-trace {
+  from { stroke-dashoffset: 260; }
+  to   { stroke-dashoffset: 0; }
+}
+.scope-trace { overflow: visible; }
+.scope-trace path {
+  stroke-dasharray: 260;
+  animation: scope-trace 2.6s ease-out both;
+}
+
+/* ---- Research timeline ---- */
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
+  padding-left: 1.9rem;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.55rem;
+  top: 0.85rem;
+  bottom: 0.85rem;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--sky-400) / 0.55),
+    rgb(var(--slate-700) / 0.9) 45%,
+    transparent
+  );
+}
+.timeline > * { position: relative; transition: border-color .25s ease, transform .25s ease; }
+.timeline > *:hover { transform: translateX(2px); }
+.timeline > *::before {
+  content: "";
+  position: absolute;
+  left: -1.62rem;
+  top: 1.5rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgb(var(--c-canvas));
+  border: 1.5px solid rgb(var(--sky-400) / 0.8);
+  box-shadow: 0 0 0 3px rgb(var(--sky-500) / 0.10);
+}
+@media (max-width: 639px) {
+  .timeline { padding-left: 1.5rem; }
+  .timeline > *::before { left: -1.3rem; }
+}
+
+/* ---- Project cards: a specification sheet, not a blog card ---- */
+.project-card { position: relative; overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(var(--sky-400) / 0.9), rgb(var(--emerald-400) / 0.75) 60%, transparent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+}
+.project-card:hover { transform: translateY(-3px); border-color: rgb(var(--sky-500) / 0.45); }
+.project-card:hover::after { transform: scaleX(1); }
+
+/* ---- Mobile action bar ---- */
+.mobile-actions {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 65;
+  display: none;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem calc(0.55rem + env(safe-area-inset-bottom));
+  background: rgb(var(--c-canvas) / 0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgb(var(--slate-800) / 0.9);
+}
+.mobile-actions a {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1px solid rgb(var(--slate-700));
+  color: rgb(var(--slate-200));
+  background: rgb(var(--slate-900) / 0.6);
+}
+.mobile-actions a.primary {
+  background: rgb(var(--sky-600));
+  border-color: transparent;
+  color: #fff;
+}
+@media (max-width: 639px) {
+  .mobile-actions { display: flex; }
+  body { padding-bottom: 3.9rem; }
+  /* keep the chat launcher above the bar */
+  #mohi-bot-toggle { margin-bottom: 3.2rem; }
+  section[id]::after { display: none; }
+}

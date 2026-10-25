@@ -1,0 +1,17 @@
+{
+  "name": "Md. Mohi Uddin Chowdhury — Portfolio",
+  "short_name": "Mohi · EEE",
+  "description": "Electrical & Electronic Engineering graduate — triboelectric nanogenerators, power systems, embedded design and industrial automation.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070a12",
+  "theme_color": "#070a12",
+  "lang": "en",
+  "categories": ["portfolio", "education", "engineering"],
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
