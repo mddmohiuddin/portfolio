@@ -72,3 +72,42 @@ GitHub's file picker only selects files — folders can't be chosen. Two options
   used if `gallery.json` is missing (e.g. previewing locally).
 - To use a different album later, change `PHOTOS_ALBUM_URL` in
   `scripts/sync-gallery.mjs` and the album link in `index.html`.
+
+---
+
+## Build & development (since v2)
+
+The site is still **plain static HTML** — no framework, no server. Only the CSS
+and a few generated assets are compiled ahead of time instead of in the browser.
+
+```bash
+npm install          # once
+npm run build        # compiled CSS + vendored fonts + icon sprite
+npm run dev          # Tailwind watch mode while editing
+```
+
+| Command / file | What it does |
+| --- | --- |
+| `src/app.css` | Source stylesheet: design tokens (`:root` / `html.light`), component CSS, `@font-face` |
+| `tailwind.config.js` | Maps the whole palette onto CSS variables so both themes work |
+| `assets/site.css` | **Committed build output** — GitHub Pages serves this file |
+| `assets/fonts/*.woff2` | Self-hosted Plus Jakarta Sans + Instrument Serif (no Google Fonts request) |
+| `scripts/build-icons.mjs` | Builds `src/_sprite.html` from `lucide` and rewrites `<i data-lucide>` → `<svg><use>` |
+| `scripts/vendor-assets.mjs` | Copies fonts and injects the sprite into `index.html` / `404.html` |
+
+> After editing `index.html` classes you must re-run `npm run build`, otherwise
+> the new utility classes will not exist in `assets/site.css`.
+
+### Theme
+
+Light / dark is a single `html.light` class driven by CSS variables — no
+`dark:` variants anywhere. Boot script in `<head>` applies the saved choice
+before first paint; the header toggle writes `localStorage['mohi-theme']` and
+falls back to the OS `prefers-color-scheme` when nothing is stored.
+
+### Generated assets
+
+- `assets/og-cover.png` — 1200×630 social share card
+- `assets/icon-192.png`, `assets/icon-512.png` — PWA icons
+- `manifest.json` + `sw.js` — installable app with an offline shell
+- `sitemap.xml`, `robots.txt`, `404.html` — crawler + error page

@@ -6,100 +6,138 @@
   <title>Md. Mohi Uddin Chowdhury | Electrical & Electronic Engineer</title>
   <meta name="description" content="Portfolio of Md. Mohi Uddin Chowdhury - Electrical & Electronic Engineering Graduate focused on triboelectric nanogenerators, power systems, embedded design, and industrial automation." />
 
+  <!-- Compiled stylesheet (Tailwind build — see npm run build) -->
+  <link rel="stylesheet" href="assets/site.css" />
+  <link rel="preload" href="assets/fonts/plus-jakarta-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/plus-jakarta-400.woff2" as="font" type="font/woff2" crossorigin />
   <!-- Favicon & social sharing preview -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#070a12" />
+  <meta name="theme-color" content="#070a12" id="meta-theme-color" />
+
+  <!-- Theme boot: runs before paint so the correct theme is applied with no flash -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('mohi-theme');
+        var systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var theme = (saved === 'light' || saved === 'dark') ? saved : (systemLight ? 'light' : 'dark');
+        var root = document.documentElement;
+        root.classList.toggle('light', theme === 'light');
+        root.dataset.theme = theme;
+        root.dataset.themePref = (saved === 'light' || saved === 'dark') ? saved : 'system';
+      } catch (e) { /* localStorage disabled — fall back to dark */ }
+    })();
+  </script>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Md. Mohi Uddin Chowdhury | Electrical & Electronic Engineer" />
   <meta property="og:description" content="EEE graduate & CESI Lab Research Assistant — triboelectric nanogenerators, power systems, embedded design, industrial automation." />
-  <meta property="og:image" content="profile.png" />
+  <meta property="og:image" content="assets/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Md. Mohi Uddin Chowdhury — Electrical & Electronic Engineer" />
   <meta name="twitter:card" content="summary_large_image" />
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta name="twitter:image" content="assets/og-cover.png" />
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              700: '#0369a1',
-            }
-          }
-        }
-      }
-    }
+  <!-- Installable app -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="sitemap" type="application/xml" href="sitemap.xml" />
+
+  <!-- Structured data: helps search engines build a person card -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Md. Mohi Uddin Chowdhury",
+    "jobTitle": "Electrical & Electronic Engineer",
+    "email": "mailto:mddmohiuddin2000@gmail.com",
+    "telephone": "+8801516505371",
+    "url": "https://mddmohiuddin.github.io/portfolio/",
+    "image": "https://mddmohiuddin.github.io/portfolio/assets/og-cover.png",
+    "description": "EEE graduate and Research Assistant at CESI Lab, NSTU — triboelectric nanogenerators, power systems, embedded design and industrial automation.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Chittagong", "addressCountry": "BD" },
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Center for Energy and Sensor Innovation Lab (CESI Lab)",
+      "url": "https://www.cesilab.org/"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Noakhali Science & Technology University (NSTU)"
+    },
+    "sameAs": ["https://linkedin.com/in/md-mohi-uddin-chowdhury-0a0107234"],
+    "knowsAbout": [
+      "Triboelectric nanogenerators",
+      "Power systems",
+      "Embedded systems",
+      "PLC & industrial automation",
+      "Renewable energy"
+    ]
+  }
   </script>
-  <style>
-    body {
-      background-color: #070a12;
-      color: #f1f5f9;
-    }
-    .grid-blueprint {
-      background-image: radial-gradient(rgba(14, 165, 233, 0.08) 1px, transparent 0);
-      background-size: 26px 26px;
-    }
+  
 
-    /* ===== Photo Gallery marquee (right-to-left slideshow) ===== */
-    .marquee-viewport {
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-      mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-    }
-    .marquee-track {
-      animation: marquee-scroll var(--marquee-duration, 60s) linear infinite;
-      will-change: transform;
-    }
-    @keyframes marquee-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    /* Auto-scroll always runs — the slideshow never stops by itself.
-       (No prefers-reduced-motion override: the gallery is meant to move.) */
-    /* Pause on hover only for real mouse pointers — a tap on mobile never freezes it */
-    @media (hover: hover) and (pointer: fine) {
-      .marquee-viewport:hover .marquee-track {
-        animation-play-state: paused;
-      }
-    }
-
-    /* ===== Top section-jump bar & smooth anchor offsets ===== */
-    .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    section[id] { scroll-margin-top: 7.5rem; }
-  </style>
 </head>
-<body class="bg-[#070a12] text-slate-100 antialiased selection:bg-sky-600 selection:text-white">
+<body class="bg-canvas text-slate-100 antialiased selection:bg-sky-600 selection:text-white">
+
+  <!-- ICON-SPRITE:START -->
+<!-- Generated by scripts/build-icons.mjs — do not edit by hand -->
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+<symbol id="i-award" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+<symbol id="i-check-circle-2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/></symbol>
+<symbol id="i-external-link" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-factory" viewBox="0 0 24 24"><path d="M12 16h.01"/><path d="M16 16h.01"/><path d="M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M8 16h.01"/></symbol>
+<symbol id="i-folder-code" viewBox="0 0 24 24"><path d="M10 10.5 8 13l2 2.5"/><path d="m14 10.5 2 2.5-2 2.5"/><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></symbol>
+<symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+<symbol id="i-images" viewBox="0 0 24 24"><path d="m22 11-1.296-1.296a2.4 2.4 0 0 0-3.408 0L11 16"/><path d="M4 8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2"/><circle cx="13" cy="7" r="1" fill="currentColor"/><rect x="8" y="2" width="14" height="14" rx="2"/></symbol>
+<symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-medal" viewBox="0 0 24 24"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"/><path d="M11 12 5.12 2.2"/><path d="m13 12 5.88-9.8"/><path d="M8 7h8"/><circle cx="12" cy="17" r="5"/><path d="M12 18v-2h-.5"/></symbol>
+<symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol>
+<symbol id="i-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-microscope" viewBox="0 0 24 24"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M10 8h4"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M17 16h4"/><path d="M19 12V3"/><path d="M19 21v-5"/><path d="M3 14h4"/><path d="M5 10V3"/><path d="M5 21v-7"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"/><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"/><path d="M18 9h1.5a1 1 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6 9H4.5a1 1 0 0 1 0-5H6"/></symbol>
+<symbol id="i-user-check" viewBox="0 0 24 24"><path d="m16 11 2 2 4-4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+</svg>
+<!-- ICON-SPRITE:END -->
+
+
+  <div id="scroll-progress" role="presentation"></div>
+
+  <a href="#about" class="skip-link px-4 py-2 rounded-lg bg-sky-600 text-white text-sm font-semibold shadow-lg">
+    Skip to content
+  </a>
 
   <!-- BACKGROUND ILLUMINATION -->
   <div class="fixed inset-0 grid-blueprint pointer-events-none -z-10"></div>
-  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-sky-600/10 blur-[150px] pointer-events-none -z-10 rounded-full"></div>
+  <div class="hero-glow fixed top-0 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-sky-600/10 blur-[150px] pointer-events-none -z-10 rounded-full"></div>
 
   <!-- NAVIGATION -->
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#070a12]/85 border-b border-slate-800/80">
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-canvas/85 border-b border-slate-800/80">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 font-bold text-base sm:text-lg tracking-tight hover:text-sky-400 transition">
         <span class="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-400/30 text-sky-400 flex items-center justify-center text-xs font-black">MC</span>
         <span class="hidden sm:inline text-slate-200">Md. Mohi Uddin Chowdhury</span>
       </a>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button id="theme-toggle" type="button" aria-label="Toggle colour theme"
+          class="w-9 h-9 rounded-lg border border-slate-700 bg-slate-900/70 flex items-center justify-center transition shrink-0">
+          <svg class="icon-sun w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
         <a href="#contact" class="text-xs font-semibold px-4 py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-500 transition shadow-sm">
           Get in Touch
         </a>
@@ -108,7 +146,7 @@
 
     <!-- Section jump bar — visible on every screen -->
     <div class="border-t border-slate-800/60">
-      <nav class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-slate-400 font-medium overflow-x-auto whitespace-nowrap no-scrollbar py-2.5">
+      <nav class="section-nav max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-slate-400 font-medium overflow-x-auto whitespace-nowrap no-scrollbar py-2.5">
         <a href="#about" class="hover:text-slate-100 transition shrink-0">About</a>
         <a href="#research" class="hover:text-slate-100 transition shrink-0">Research Experiences</a>
         <a href="#education" class="hover:text-slate-100 transition shrink-0">Education</a>
@@ -137,8 +175,13 @@
           </div>
 
           <div class="space-y-3">
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              Md. Mohi Uddin Chowdhury
+            <div class="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] text-slate-500">
+              <span class="w-7 h-px bg-slate-700"></span>
+              EEE &middot; NSTU &middot; CESI Lab
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-ink leading-tight">
+              Md. Mohi Uddin
+              <span class="font-accent italic font-normal tracking-normal">Chowdhury</span>
             </h1>
             <p class="text-base sm:text-lg text-sky-400 font-medium leading-relaxed">
               Electrical & Electronic Engineering Graduate focused on triboelectric nanogenerators, power systems, embedded design, and industrial automation.
@@ -151,73 +194,77 @@
           <!-- Quick Contacts & Links (Framer link removed) -->
           <div class="flex flex-wrap gap-2.5 text-xs text-slate-300">
             <a href="mailto:mddmohiuddin2000@gmail.com" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-slate-700 transition">
-              <i data-lucide="mail" class="w-3.5 h-3.5 text-sky-400"></i>
+              <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-mail"/></svg>
               <span>mddmohiuddin2000@gmail.com</span>
             </a>
             <a href="tel:+8801516505371" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-slate-700 transition">
-              <i data-lucide="phone" class="w-3.5 h-3.5 text-sky-400"></i>
+              <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>
               <span>+880 1516-505371</span>
             </a>
             <a href="https://linkedin.com/in/md-mohi-uddin-chowdhury-0a0107234" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-slate-700 transition">
-              <i data-lucide="linkedin" class="w-3.5 h-3.5 text-sky-400"></i>
+              <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-linkedin"/></svg>
               <span>LinkedIn Profile</span>
             </a>
             <a href="https://www.cesilab.org/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-sky-950/40 border border-sky-800/50 hover:border-sky-600 text-sky-300 transition">
-              <i data-lucide="external-link" class="w-3.5 h-3.5 text-sky-400"></i>
+              <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-external-link"/></svg>
               <span>CESI Lab</span>
             </a>
           </div>
 
-          <!-- Key Metrics -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
-              <div class="text-xl font-bold text-white">CESI Lab</div>
+          <!-- Key Metrics — instrument read-outs -->
+          <div class="bento grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+            <div class="spotlight p-3.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
+              <div class="text-xl font-bold text-ink tile-value">CESI Lab</div>
               <div class="text-xs text-slate-400 mt-1">Research Assistant</div>
+              <svg class="scope-trace mt-2 w-full h-5 text-sky-400/70" viewBox="0 0 120 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="M0 10h12l3-7 4 14 4-14 3 7h18l3-4 3 8 3-8 3 4h56" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
-              <div class="text-xl font-bold text-white">5 Studies</div>
+            <div class="spotlight p-3.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
+              <div class="text-xl font-bold text-ink tile-value">5 Studies</div>
               <div class="text-xs text-slate-400 mt-1">TENG Investigations</div>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
-              <div class="text-xl font-bold text-white">10 Projects</div>
-              <div class="text-xs text-slate-400 mt-1">Academic & Hardware</div>
+            <div class="spotlight p-3.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
+              <div class="text-xl font-bold text-ink tile-value">10 Projects</div>
+              <div class="text-xs text-slate-400 mt-1">Academic &amp; Hardware</div>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
-              <div class="text-xl font-bold text-white">8 Semesters</div>
+            <div class="spotlight p-3.5 rounded-xl bg-slate-900/70 border border-slate-800/80">
+              <div class="text-xl font-bold text-ink tile-value">8 Semesters</div>
               <div class="text-xs text-slate-400 mt-1">Merit Scholarship</div>
             </div>
-            <div class="p-3.5 rounded-xl bg-sky-950/30 border border-sky-800/50">
-              <div class="text-xl font-bold text-sky-300">3.90 / 4.00</div>
+            <div class="spotlight p-3.5 rounded-xl bg-sky-950/30 border border-sky-800/50">
+              <div class="text-xl font-bold text-sky-300 tile-value">3.90 / 4.00</div>
               <div class="text-xs text-slate-400 mt-1">Academic CGPA</div>
             </div>
-            <div class="p-3.5 rounded-xl bg-sky-950/30 border border-sky-800/50">
-              <div class="text-xl font-bold text-sky-300">1 / 23</div>
+            <div class="spotlight p-3.5 rounded-xl bg-sky-950/30 border border-sky-800/50">
+              <div class="text-xl font-bold text-sky-300 tile-value">1 / 23</div>
               <div class="text-xs text-slate-400 mt-1">Class Rank</div>
             </div>
           </div>
         </div>
 
+
         <!-- Right Column: Profile Photo Frame -->
         <div class="w-full max-w-[280px] sm:max-w-[310px] shrink-0 flex flex-col items-center">
           <div class="relative group w-full">
-            <div class="absolute -inset-1 bg-gradient-to-tr from-sky-600 via-cyan-500 to-slate-600 rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition duration-500"></div>
+            <div class="photo-glow absolute -inset-1 bg-gradient-to-tr from-sky-600 via-cyan-500 to-slate-600 rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition duration-500"></div>
 
-            <div class="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-700/80 shadow-2xl aspect-[3/4] flex items-center justify-center">
+            <div class="photo-frame spotlight relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-700/80 shadow-2xl aspect-[3/4] flex items-center justify-center">
               <img 
                 src="profile.png?v=2"
                 alt="Md. Mohi Uddin Chowdhury" 
                 class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500 ease-out"
               />
               
-              <div class="absolute bottom-0 inset-x-0 p-3.5 bg-gradient-to-t from-[#070a12] via-[#070a12]/85 to-transparent space-y-1 pointer-events-none">
-                <div class="text-xs font-semibold text-white flex items-center justify-between">
+              <div class="absolute bottom-0 inset-x-0 p-3.5 bg-gradient-to-t from-canvas via-canvas/85 to-transparent space-y-1 pointer-events-none">
+                <div class="text-xs font-semibold text-ink flex items-center justify-between">
                   <span>Chittagong, Bangladesh</span>
                   <span class="inline-flex items-center gap-1 text-emerald-400 text-[11px]">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Verified
                   </span>
                 </div>
                 <div class="text-[11px] text-slate-400 flex items-center gap-1">
-                  <i data-lucide="map-pin" class="w-3 h-3 text-sky-400"></i> NSTU (EEE Dept)
+                  <svg class="w-3 h-3 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-map-pin"/></svg> NSTU (EEE Dept)
                 </div>
               </div>
             </div>
@@ -232,19 +279,19 @@
     <section id="research" class="space-y-6 scroll-mt-24">
       <div class="flex items-center justify-between border-b border-slate-800 pb-4">
         <div>
-          <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <i data-lucide="microscope" class="w-6 h-6 text-sky-400"></i>
+          <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+            <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-microscope"/></svg>
             Research Experiences
           </h2>
           <p class="text-xs sm:text-sm text-slate-400 mt-1">Undergraduate Thesis & Lab Collaborations at Center for Energy and Sensor Innovation Lab (CESI Lab)</p>
         </div>
         <a href="https://www.cesilab.org/" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1">
-          CESI Lab Website <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          CESI Lab Website <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-external-link"/></svg>
         </a>
       </div>
 
       <!-- 1) UNDERGRADUATE THESIS -->
-      <div class="p-6 rounded-2xl bg-slate-900/80 border border-sky-500/40 hover:border-sky-500/60 transition space-y-4">
+      <div class="spotlight p-6 rounded-2xl bg-slate-900/80 border border-sky-500/40 hover:border-sky-500/60 transition space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-300 font-bold text-xs flex items-center justify-center border border-sky-500/40">1</span>
@@ -253,18 +300,18 @@
             </span>
           </div>
           <span class="text-xs text-slate-400 flex items-center gap-1">
-            <i data-lucide="calendar" class="w-3.5 h-3.5 text-sky-400"></i> March 2025 – Present
+            <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"/></svg> March 2025 – Present
           </span>
         </div>
 
-        <h3 class="text-base sm:text-lg font-bold text-white leading-snug">
+        <h3 class="text-base sm:text-lg font-bold text-ink leading-snug">
           Natural spice-based biodegradable triboelectric nanogenerator for sustainable biomechanical energy harvesting and self-powered intelligent devices.
         </h3>
 
         <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-xs text-slate-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <span class="text-sky-400 font-semibold">Affiliation:</span> Undergraduate Student & Research Assistant (RA) at 
-            <a href="https://www.cesilab.org/" target="_blank" class="text-white hover:underline font-medium">Center for Energy and Sensor Innovation Lab (CESI Lab)</a>
+            <a href="https://www.cesilab.org/" target="_blank" class="text-ink hover:underline font-medium">Center for Energy and Sensor Innovation Lab (CESI Lab)</a>
           </div>
           <span class="text-xs text-emerald-400 font-medium">Active Research</span>
         </div>
@@ -277,14 +324,14 @@
       <!-- COLLABORATIONS WITH LAB (2 to 5) -->
       <div class="space-y-3">
         <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-          <i data-lucide="layers" class="w-4 h-4 text-sky-400"></i>
+          <svg class="w-4 h-4 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-layers"/></svg>
           Collaborations with Lab (CESI Lab)
         </h3>
 
-        <div class="grid sm:grid-cols-2 gap-4">
+        <div class="timeline">
           
           <!-- 2 -->
-          <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+          <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
             <div class="space-y-2">
               <div class="flex items-center justify-between text-xs">
                 <span class="text-sky-400 font-semibold">Research Study #2</span>
@@ -298,7 +345,7 @@
           </div>
 
           <!-- 3 -->
-          <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+          <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
             <div class="space-y-2">
               <div class="flex items-center justify-between text-xs">
                 <span class="text-sky-400 font-semibold">Research Study #3</span>
@@ -312,7 +359,7 @@
           </div>
 
           <!-- 4 -->
-          <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+          <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
             <div class="space-y-2">
               <div class="flex items-center justify-between text-xs">
                 <span class="text-sky-400 font-semibold">Research Study #4</span>
@@ -326,7 +373,7 @@
           </div>
 
           <!-- 5 -->
-          <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+          <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
             <div class="space-y-2">
               <div class="flex items-center justify-between text-xs">
                 <span class="text-sky-400 font-semibold">Research Study #5</span>
@@ -346,8 +393,8 @@
     <!-- EDUCATION SECTION -->
     <section id="education" class="space-y-6">
       <div class="border-b border-slate-800 pb-4">
-        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          <i data-lucide="graduation-cap" class="w-6 h-6 text-sky-400"></i>
+        <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+          <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-graduation-cap"/></svg>
           Educational Qualifications
         </h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1">Formal academic degrees and performance track record</p>
@@ -355,9 +402,9 @@
 
       <div class="space-y-4">
         <!-- B.Sc. -->
-        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="spotlight p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div class="space-y-1.5">
-            <h3 class="text-base sm:text-lg font-bold text-white">Bachelor of Science in Electrical and Electronic Engineering (EEE)</h3>
+            <h3 class="text-base sm:text-lg font-bold text-ink">Bachelor of Science in Electrical and Electronic Engineering (EEE)</h3>
             <p class="text-sm text-sky-400">Noakhali Science & Technology University (NSTU), Bangladesh</p>
             <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400 pt-1">
               <span class="inline-flex items-center gap-1 font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
@@ -373,9 +420,9 @@
         </div>
 
         <!-- HSC -->
-        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="spotlight p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div class="space-y-1.5">
-            <h3 class="text-base sm:text-lg font-bold text-white">Higher Secondary Certificate (HSC) — Science</h3>
+            <h3 class="text-base sm:text-lg font-bold text-ink">Higher Secondary Certificate (HSC) — Science</h3>
             <p class="text-sm text-slate-300">Chittagong Engineering University School and College (CEUSC)</p>
             <div class="flex items-center gap-3 text-xs text-slate-400 pt-1">
               <span class="font-semibold text-emerald-400">GPA: 5.00 / 5.00</span>
@@ -389,9 +436,9 @@
         </div>
 
         <!-- SSC -->
-        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="spotlight p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div class="space-y-1.5">
-            <h3 class="text-base sm:text-lg font-bold text-white">Secondary School Certificate (SSC) — Science</h3>
+            <h3 class="text-base sm:text-lg font-bold text-ink">Secondary School Certificate (SSC) — Science</h3>
             <p class="text-sm text-slate-300">Rangunia Khilmogal Rasik High School, Chattogram</p>
             <div class="flex items-center gap-3 text-xs text-slate-400 pt-1">
               <span class="font-semibold text-emerald-400">GPA: 5.00 / 5.00</span>
@@ -409,18 +456,18 @@
     <!-- TECHNICAL SKILLS -->
     <section id="skills" class="space-y-6">
       <div class="border-b border-slate-800 pb-4">
-        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          <i data-lucide="cpu" class="w-6 h-6 text-sky-400"></i>
+        <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+          <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-cpu"/></svg>
           Technical Competencies
         </h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1">Software platforms, programming languages, and hands-on laboratory capabilities</p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-3">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-3">
           <div class="flex items-center gap-2 text-sky-400">
-            <i data-lucide="sliders" class="w-4 h-4"></i>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Engineering Software</h3>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-sliders"/></svg>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-ink">Engineering Software</h3>
           </div>
           <div class="flex flex-wrap gap-1.5">
             <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">NI Multisim</span>
@@ -436,10 +483,10 @@
           </div>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-3">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-3">
           <div class="flex items-center gap-2 text-sky-400">
-            <i data-lucide="code" class="w-4 h-4"></i>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Programming & Control</h3>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-code"/></svg>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-ink">Programming & Control</h3>
           </div>
           <div class="flex flex-wrap gap-1.5">
             <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Python</span>
@@ -452,10 +499,10 @@
           </div>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-3">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-3">
           <div class="flex items-center gap-2 text-sky-400">
-            <i data-lucide="wrench" class="w-4 h-4"></i>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Practical Hardware</h3>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-wrench"/></svg>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-ink">Practical Hardware</h3>
           </div>
           <div class="flex flex-wrap gap-1.5">
             <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Electrical Wiring</span>
@@ -466,10 +513,10 @@
           </div>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-3">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-3">
           <div class="flex items-center gap-2 text-sky-400">
-            <i data-lucide="layers" class="w-4 h-4"></i>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Design & Tools</h3>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-layers"/></svg>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-ink">Design & Tools</h3>
           </div>
           <div class="flex flex-wrap gap-1.5">
             <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Photoshop</span>
@@ -485,8 +532,8 @@
     <!-- ACADEMIC PROJECTS SECTION -->
     <section id="projects" class="space-y-6">
       <div class="border-b border-slate-800 pb-4">
-        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          <i data-lucide="folder-code" class="w-6 h-6 text-sky-400"></i>
+        <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+          <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-folder-code"/></svg>
           Academic Projects
         </h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1">Hardware design, sensor networks, robotics, and discrete circuit implementations</p>
@@ -495,7 +542,7 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         
         <!-- 1 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Agri-Tech / Embedded</span>
@@ -507,7 +554,7 @@
         </div>
 
         <!-- 2 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Robotics (Team Project)</span>
@@ -519,7 +566,7 @@
         </div>
 
         <!-- 3 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Instrumentation</span>
@@ -531,7 +578,7 @@
         </div>
 
         <!-- 4 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Sensors & Defense</span>
@@ -543,7 +590,7 @@
         </div>
 
         <!-- 5 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Safety Engineering</span>
@@ -555,7 +602,7 @@
         </div>
 
         <!-- 6 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Digital Circuit Design</span>
@@ -567,7 +614,7 @@
         </div>
 
         <!-- 7 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Digital Circuit Design</span>
@@ -579,7 +626,7 @@
         </div>
 
         <!-- 8 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Digital Circuit Design</span>
@@ -591,7 +638,7 @@
         </div>
 
         <!-- 9 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3">
+        <div class="project-card spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 transition flex flex-col justify-between space-y-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Digital Circuit Design</span>
@@ -603,7 +650,7 @@
         </div>
 
         <!-- 10 -->
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3 sm:col-span-2 lg:col-span-3">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition flex flex-col justify-between space-y-3 sm:col-span-2 lg:col-span-3">
           <div class="space-y-2">
             <div class="flex justify-between items-center text-xs text-slate-400">
               <span class="text-sky-400 font-semibold">Sequential Logic</span>
@@ -620,53 +667,53 @@
     <!-- INDUSTRIAL EXPERIENCE -->
     <section id="experience" class="space-y-6">
       <div class="border-b border-slate-800 pb-4">
-        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          <i data-lucide="factory" class="w-6 h-6 text-sky-400"></i>
+        <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+          <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-factory"/></svg>
           Industrial & Practical Experience
         </h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1">Power plant operations, grid distribution, and instrumentation training</p>
       </div>
 
       <div class="grid sm:grid-cols-2 gap-4">
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
           <div class="flex justify-between items-start">
-            <h3 class="text-sm font-bold text-white">Training Institute for Chemical Industries (TICI)</h3>
+            <h3 class="text-sm font-bold text-ink">Training Institute for Chemical Industries (TICI)</h3>
             <span class="text-xs text-slate-400">April 5–17, 2025</span>
           </div>
           <p class="text-xs font-semibold text-sky-400">Industrial Technology on Electrical Engineering & Instrumentation</p>
           <p class="text-xs text-slate-400">Hands-on calibration of industrial sensors, pneumatic actuators, switchgear panels, and automated process loops in Narsingdi.</p>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
           <div class="flex justify-between items-start">
-            <h3 class="text-sm font-bold text-white">Chowmuhani 113 MW HFO Power Plant</h3>
+            <h3 class="text-sm font-bold text-ink">Chowmuhani 113 MW HFO Power Plant</h3>
             <span class="text-xs text-slate-400">March 2025</span>
           </div>
           <p class="text-xs font-semibold text-sky-400">Generation, Protection & Transmission of Electrical Power</p>
           <p class="text-xs text-slate-400">Operational analysis of high-voltage transmission lines, synchronous heavy generators, step-up transformers, and protective relays.</p>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
           <div class="flex justify-between items-start">
-            <h3 class="text-sm font-bold text-white">Daffodil International University (DIU)</h3>
+            <h3 class="text-sm font-bold text-ink">Daffodil International University (DIU)</h3>
             <span class="text-xs text-slate-400">August 2024</span>
           </div>
           <p class="text-xs font-semibold text-sky-400">Solar PV System Planning, Design & Operation</p>
           <p class="text-xs text-slate-400">Photovoltaic plant dimensioning, grid tie-in mechanics, battery bank storage optimization, and PVsyst performance simulation.</p>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
           <div class="flex justify-between items-start">
-            <h3 class="text-sm font-bold text-white">BSRM (Bangladesh Steel Re-Rolling Mills)</h3>
+            <h3 class="text-sm font-bold text-ink">BSRM (Bangladesh Steel Re-Rolling Mills)</h3>
             <span class="text-xs text-slate-400">Industrial Training</span>
           </div>
           <p class="text-xs font-semibold text-sky-400">PLC Automation & Heavy Plant Systems</p>
           <p class="text-xs text-slate-400">Factory inspection of induction furnace monitoring systems, Siemens PLC automation panels, and heavy-duty variable frequency drives.</p>
         </div>
 
-        <div class="sm:col-span-2 p-4 rounded-xl bg-slate-900/40 border border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
+        <div class="spotlight sm:col-span-2 p-4 rounded-xl bg-slate-900/40 border border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-2">
-            <i data-lucide="zap" class="w-4 h-4 text-sky-400"></i>
+            <svg class="w-4 h-4 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-zap"/></svg>
             <span>Inspection & Training on 32KV / 440V Local Distribution Substation Transformer at NSTU</span>
           </div>
           <span class="hidden sm:inline font-medium text-slate-300">Substation Operations</span>
@@ -677,44 +724,44 @@
     <!-- LEADERSHIP & ACTIVITIES -->
     <section class="space-y-6">
       <div class="border-b border-slate-800 pb-4">
-        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          <i data-lucide="users" class="w-6 h-6 text-sky-400"></i>
+        <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+          <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-users"/></svg>
           Leadership & Community Initiatives
         </h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1">Student governance, mentorship, and conference management</p>
       </div>
 
       <div class="grid sm:grid-cols-2 gap-4">
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
           <div class="flex justify-between items-center">
-            <h3 class="text-sm font-bold text-white">Vice President</h3>
+            <h3 class="text-sm font-bold text-ink">Vice President</h3>
             <span class="text-xs text-sky-400">March 2025 – June 2026</span>
           </div>
           <p class="text-xs text-slate-300 font-medium">NSTU EEE Association</p>
           <p class="text-xs text-slate-400">Spearheading academic seminars, technical symposiums, student welfare, and annual department conventions.</p>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
           <div class="flex justify-between items-center">
-            <h3 class="text-sm font-bold text-white">Class Representative (CR)</h3>
+            <h3 class="text-sm font-bold text-ink">Class Representative (CR)</h3>
             <span class="text-xs text-sky-400">July 2023 – August 2026</span>
           </div>
           <p class="text-xs text-slate-300 font-medium">Department of EEE, NSTU</p>
           <p class="text-xs text-slate-400">Elected for 3 consecutive terms to facilitate faculty-student communication, course coordination, and laboratory scheduling.</p>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
           <div class="flex justify-between items-center">
-            <h3 class="text-sm font-bold text-white">Executive Member</h3>
+            <h3 class="text-sm font-bold text-ink">Executive Member</h3>
             <span class="text-xs text-sky-400">April 2022 – March 2026</span>
           </div>
           <p class="text-xs text-slate-300 font-medium">NSTU Robotics Club</p>
           <p class="text-xs text-slate-400">Facilitating microcontroller and hardware workshops, mentoring junior competitors, and managing event logistics.</p>
         </div>
 
-        <div class="p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
+        <div class="spotlight p-5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
           <div class="flex justify-between items-center">
-            <h3 class="text-sm font-bold text-white">Founder & Advisor</h3>
+            <h3 class="text-sm font-bold text-ink">Founder & Advisor</h3>
             <span class="text-xs text-sky-400">Founded July 2025</span>
           </div>
           <p class="text-xs text-slate-300 font-medium">General Students Association (GSA)</p>
@@ -726,58 +773,58 @@
     <!-- HONORS & AWARDS -->
     <section id="awards" class="space-y-6">
       <div class="border-b border-slate-800 pb-4">
-        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          <i data-lucide="award" class="w-6 h-6 text-sky-400"></i>
+        <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+          <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-award"/></svg>
           Honors & Merit Scholarships
         </h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1">Recognitions for academic standing and research potential</p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
-          <i data-lucide="medal" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
+        <div class="spotlight p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
+          <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-medal"/></svg>
           <div>
-            <h4 class="text-sm font-bold text-white">University Merit Scholarship</h4>
+            <h4 class="text-sm font-bold text-ink">University Merit Scholarship</h4>
             <p class="text-xs text-slate-400 mt-0.5">Awarded continuously across 8 undergraduate semesters (2022–2026).</p>
           </div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
-          <i data-lucide="medal" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
+        <div class="spotlight p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
+          <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-medal"/></svg>
           <div>
-            <h4 class="text-sm font-bold text-white">CBET Scholarship (Canada)</h4>
+            <h4 class="text-sm font-bold text-ink">CBET Scholarship (Canada)</h4>
             <p class="text-xs text-slate-400 mt-0.5">Competitive education grant recipient from Canada Bangladesh Education Trust (2022–2025).</p>
           </div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
-          <i data-lucide="medal" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
+        <div class="spotlight p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
+          <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-medal"/></svg>
           <div>
-            <h4 class="text-sm font-bold text-white">Ankur Undergraduate Scholarship</h4>
+            <h4 class="text-sm font-bold text-ink">Ankur Undergraduate Scholarship</h4>
             <p class="text-xs text-slate-400 mt-0.5">Merit stipend awarded by Ankur International Foundation (2023–2025).</p>
           </div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
-          <i data-lucide="trophy" class="w-5 h-5 text-sky-400 shrink-0 mt-0.5"></i>
+        <div class="spotlight p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
+          <svg class="w-5 h-5 text-sky-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trophy"/></svg>
           <div>
-            <h4 class="text-sm font-bold text-white">2nd Place, Technical Presentation</h4>
+            <h4 class="text-sm font-bold text-ink">2nd Place, Technical Presentation</h4>
             <p class="text-xs text-slate-400 mt-0.5">Intra-Department slide deck competition, June 2024.</p>
           </div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
-          <i data-lucide="award" class="w-5 h-5 text-sky-400 shrink-0 mt-0.5"></i>
+        <div class="spotlight p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
+          <svg class="w-5 h-5 text-sky-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-award"/></svg>
           <div>
-            <h4 class="text-sm font-bold text-white">Outstanding Volunteer Award</h4>
+            <h4 class="text-sm font-bold text-ink">Outstanding Volunteer Award</h4>
             <p class="text-xs text-slate-400 mt-0.5">2nd Int. Conf. on Machine Intelligence & Emerging Tech (MIET 2024).</p>
           </div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
-          <i data-lucide="award" class="w-5 h-5 text-sky-400 shrink-0 mt-0.5"></i>
+        <div class="spotlight p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
+          <svg class="w-5 h-5 text-sky-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-award"/></svg>
           <div>
-            <h4 class="text-sm font-bold text-white">Contribution Awards (EEE Day)</h4>
+            <h4 class="text-sm font-bold text-ink">Contribution Awards (EEE Day)</h4>
             <p class="text-xs text-slate-400 mt-0.5">Honored as Organizing VP in 2026 and Lead Organizer in 2022.</p>
           </div>
         </div>
@@ -786,34 +833,34 @@
 
     <!-- COURSES & LANGUAGES -->
     <section class="grid sm:grid-cols-2 gap-6">
-      <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-4">
-        <h3 class="text-base font-bold text-white flex items-center gap-2">
-          <i data-lucide="check-circle-2" class="w-5 h-5 text-sky-400"></i>
+      <div class="spotlight p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-4">
+        <h3 class="text-base font-bold text-ink flex items-center gap-2">
+          <svg class="w-5 h-5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check-circle-2"/></svg>
           Certifications & Specialized Courses
         </h3>
         <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
           <li class="flex items-start gap-2">
             <span class="text-sky-400 font-bold">•</span>
-            <div><strong class="text-white">Python Developer Certification</strong> — W3Schools</div>
+            <div><strong class="text-ink">Python Developer Certification</strong> — W3Schools</div>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-sky-400 font-bold">•</span>
-            <div><strong class="text-white">PLC Programming & Logic Implementation</strong> — Industrial Automation</div>
+            <div><strong class="text-ink">PLC Programming & Logic Implementation</strong> — Industrial Automation</div>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-sky-400 font-bold">•</span>
-            <div><strong class="text-white">Personal & Professional Communication</strong> — 10 Minute School</div>
+            <div><strong class="text-ink">Personal & Professional Communication</strong> — 10 Minute School</div>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-sky-400 font-bold">•</span>
-            <div><strong class="text-white">Computer Office Application (6-Month Course)</strong> — BTEB</div>
+            <div><strong class="text-ink">Computer Office Application (6-Month Course)</strong> — BTEB</div>
           </li>
         </ul>
       </div>
 
-      <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-4">
-        <h3 class="text-base font-bold text-white flex items-center gap-2">
-          <i data-lucide="languages" class="w-5 h-5 text-sky-400"></i>
+      <div class="spotlight p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-4">
+        <h3 class="text-base font-bold text-ink flex items-center gap-2">
+          <svg class="w-5 h-5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-languages"/></svg>
           Language Proficiency
         </h3>
         <div class="space-y-3">
@@ -851,8 +898,8 @@
     <!-- REFERENCES SECTION -->
     <section id="references" class="space-y-6">
       <div class="border-b border-slate-800 pb-4">
-        <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          <i data-lucide="user-check" class="w-6 h-6 text-sky-400"></i>
+        <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+          <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-user-check"/></svg>
           Academic References
         </h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-1">Supervisors and professors available for recommendation</p>
@@ -861,51 +908,51 @@
       <div class="grid sm:grid-cols-3 gap-4">
         
         <!-- Ref 1 -->
-        <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2.5">
-          <h3 class="text-sm font-bold text-white">Dr. Mohd Abdur Rashid</h3>
+        <div class="spotlight p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2.5">
+          <h3 class="text-sm font-bold text-ink">Dr. Mohd Abdur Rashid</h3>
           <p class="text-xs font-medium text-sky-400">Professor, Dept. of EEE</p>
           <p class="text-xs text-slate-400">Noakhali Science & Technology University (NSTU)</p>
           <div class="pt-2 space-y-1 text-xs text-slate-300">
             <div class="flex items-center gap-2">
-              <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-500"></i>
+              <svg class="w-3.5 h-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-mail"/></svg>
               <a href="mailto:marashid.eee@nstu.edu.bd" class="hover:underline text-[11px] truncate">marashid.eee@nstu.edu.bd</a>
             </div>
             <div class="flex items-center gap-2">
-              <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-500"></i>
+              <svg class="w-3.5 h-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>
               <span class="text-[11px]">+880 1999-827326</span>
             </div>
           </div>
         </div>
 
         <!-- Ref 2: Dr. Md. Bellal Hossain -->
-        <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2.5">
-          <h3 class="text-sm font-bold text-white">Dr. Md. Bellal Hossain</h3>
+        <div class="spotlight p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2.5">
+          <h3 class="text-sm font-bold text-ink">Dr. Md. Bellal Hossain</h3>
           <p class="text-xs font-medium text-sky-400">Professor, Dept. of EEE</p>
           <p class="text-xs text-slate-400">Noakhali Science & Technology University (NSTU)</p>
           <div class="pt-2 space-y-1 text-xs text-slate-300">
             <div class="flex items-center gap-2">
-              <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-500"></i>
+              <svg class="w-3.5 h-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-mail"/></svg>
               <a href="mailto:belalcste@nstu.edu.bd" class="hover:underline text-[11px] truncate">belalcste@nstu.edu.bd</a>
             </div>
             <div class="flex items-center gap-2">
-              <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-500"></i>
+              <svg class="w-3.5 h-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>
               <span class="text-[11px]">+880 1914-450085</span>
             </div>
           </div>
         </div>
 
         <!-- Ref 3 -->
-        <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2.5">
-          <h3 class="text-sm font-bold text-white">Dr. S M Sohel Rana</h3>
+        <div class="spotlight p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2.5">
+          <h3 class="text-sm font-bold text-ink">Dr. S M Sohel Rana</h3>
           <p class="text-xs font-medium text-sky-400">Assistant Professor, Dept. of EEE</p>
           <p class="text-xs text-slate-400">Noakhali Science & Technology University (NSTU)</p>
           <div class="pt-2 space-y-1 text-xs text-slate-300">
             <div class="flex items-center gap-2">
-              <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-500"></i>
+              <svg class="w-3.5 h-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-mail"/></svg>
               <a href="mailto:sohel.eee@nstu.edu.bd" class="hover:underline text-[11px] truncate">sohel.eee@nstu.edu.bd</a>
             </div>
             <div class="flex items-center gap-2">
-              <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-500"></i>
+              <svg class="w-3.5 h-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>
               <span class="text-[11px]">+880 1706-970030</span>
             </div>
           </div>
@@ -915,9 +962,9 @@
     </section>
 
     <!-- CONTACT & DECLARATION -->
-    <section id="contact" class="p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-slate-900/90 to-[#070a12] border border-slate-800 space-y-6 text-center">
+    <section id="contact" class="p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-slate-900/90 to-canvas border border-slate-800 space-y-6 text-center">
       <div class="max-w-xl mx-auto space-y-3">
-        <h2 class="text-2xl sm:text-3xl font-bold text-white">Open for Research & Engineering Roles</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-ink">Open for Research & Engineering Roles</h2>
         <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
           Available for research assistantships, graduate study opportunities, and engineering roles.
         </p>
@@ -925,20 +972,20 @@
 
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="mailto:mddmohiuddin2000@gmail.com" class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition flex items-center gap-2">
-          <i data-lucide="send" class="w-4 h-4"></i>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-send"/></svg>
           Send an Email
         </a>
         <a href="https://linkedin.com/in/md-mohi-uddin-chowdhury-0a0107234" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition flex items-center gap-2">
-          <i data-lucide="linkedin" class="w-4 h-4"></i>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-linkedin"/></svg>
           Connect on LinkedIn
         </a>
       </div>
 
       <!-- ===== Contact form: send a message via WhatsApp or Email ===== -->
       <div class="max-w-xl mx-auto w-full text-left">
-        <form id="contact-form" class="p-5 sm:p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3" autocomplete="off">
-          <h3 class="text-sm font-bold text-white flex items-center gap-2">
-            <i data-lucide="message-square" class="w-4 h-4 text-sky-400"></i>
+        <form id="contact-form" class="spotlight p-5 sm:p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3" autocomplete="off">
+          <h3 class="text-sm font-bold text-ink flex items-center gap-2">
+            <svg class="w-4 h-4 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-message-square"/></svg>
             Send a Message
           </h3>
 
@@ -972,12 +1019,12 @@
           <div class="flex flex-wrap gap-2.5">
             <button type="button" id="cf-wa"
               class="flex-1 min-w-[150px] px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition flex items-center justify-center gap-2">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-message-circle"/></svg>
               Send via WhatsApp
             </button>
             <button type="button" id="cf-mail"
               class="flex-1 min-w-[150px] px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition flex items-center justify-center gap-2">
-              <i data-lucide="send" class="w-4 h-4"></i>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-send"/></svg>
               Send via Email
             </button>
           </div>
@@ -1000,8 +1047,8 @@
     <section id="gallery" class="space-y-5 scroll-mt-24">
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
         <div>
-          <h2 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <i data-lucide="images" class="w-6 h-6 text-sky-400"></i>
+          <h2 class="text-2xl font-bold tracking-tight text-ink flex items-center gap-2">
+            <svg class="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-images"/></svg>
             Photo Gallery
           </h2>
           <p class="text-xs sm:text-sm text-slate-400 mt-1">
@@ -1009,12 +1056,12 @@
           </p>
         </div>
         <a href="https://photos.app.goo.gl/yH8CZFdgC3h5Sxw69" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1">
-          View Album <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          View Album <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-external-link"/></svg>
         </a>
       </div>
 
       <!-- Right-to-left marquee slideshow -->
-      <div class="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-4">
+      <div class="spotlight rounded-2xl border border-slate-800/80 bg-slate-900/40 p-4">
         <div class="marquee-viewport">
           <div id="gallery-track" class="marquee-track flex w-max items-center">
             <!-- Photos are injected here by the script (duplicated for a seamless loop) -->
@@ -1046,16 +1093,32 @@
     </div>
   </footer>
 
+  <!-- ===== Mobile quick actions (thumb-friendly) ===== -->
+  <nav class="mobile-actions sm:hidden" aria-label="Quick contact">
+    <a class="primary" href="mailto:mddmohiuddin2000@gmail.com">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-mail"/></svg>
+      Email
+    </a>
+    <a href="https://wa.me/8801516505371?text=Hello%20Mohi%2C%20I%20saw%20your%20portfolio.">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-message-circle"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://linkedin.com/in/md-mohi-uddin-chowdhury-0a0107234" target="_blank" rel="noopener noreferrer">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-linkedin"/></svg>
+      LinkedIn
+    </a>
+  </nav>
+
   <!-- ===== "Ask me about Mohi" chatbot ===== -->
   <div class="fixed bottom-4 right-4 z-[70] flex flex-col items-end gap-3">
 
     <!-- Chat panel -->
-    <div id="mohi-bot-panel" class="hidden w-[min(92vw,360px)] rounded-2xl border border-slate-700/80 bg-[#0b1220] shadow-2xl overflow-hidden">
+    <div id="mohi-bot-panel" role="dialog" aria-modal="false" aria-label="Ask me about Mohi" class="hidden w-[min(92vw,360px)] rounded-2xl border border-slate-700/80 bg-surface shadow-2xl overflow-hidden">
       <div class="flex items-center justify-between gap-2 px-4 py-3 bg-sky-600/20 border-b border-slate-700/80">
         <div class="flex items-center gap-2.5">
           <span class="w-9 h-9 rounded-full bg-sky-500/20 border border-sky-400/40 text-sky-300 text-xs font-black flex items-center justify-center shrink-0">MC</span>
           <div>
-            <div class="text-sm font-bold text-white leading-tight">Ask me about Mohi</div>
+            <div class="text-sm font-bold text-ink leading-tight">Ask me about Mohi</div>
             <div class="text-[10px] text-emerald-400 flex items-center gap-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Online — answers from this website
             </div>
@@ -1066,7 +1129,7 @@
         </button>
       </div>
 
-      <div id="mohi-bot-messages" class="px-3 py-3 space-y-2.5 h-[310px] overflow-y-auto text-sm"></div>
+      <div id="mohi-bot-messages" role="log" aria-live="polite" aria-relevant="additions" class="px-3 py-3 space-y-2.5 h-[310px] overflow-y-auto text-sm"></div>
 
       <div id="mohi-bot-chips" class="px-3 pb-2 flex flex-wrap gap-1.5">
         <button type="button" class="mohi-chip px-2.5 py-1 rounded-full text-[11px] bg-slate-800/80 border border-slate-700 text-slate-300 hover:border-sky-500 hover:text-white transition">Who is Mohi?</button>
@@ -1094,7 +1157,6 @@
   <!-- SCRIPT -->
   <script>
     // Guard: if the icon CDN fails to load, the gallery must still run.
-    if (window.lucide) lucide.createIcons();
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // ===== PHOTO GALLERY — auto-synced from the shared Google Photos album =====
@@ -1157,12 +1219,37 @@
         const full = src.replace(/=w\d+$/, '=w1600');
         return (
           '<a href="' + full + '" target="_blank" rel="noopener noreferrer" class="shrink-0 block pr-4">' +
-            '<div class="w-[240px] sm:w-[330px] h-[175px] sm:h-[235px] rounded-xl overflow-hidden border border-slate-800 bg-slate-900 hover:border-sky-500/60 transition">' +
+            '<div class="spotlight w-[240px] sm:w-[330px] h-[175px] sm:h-[235px] rounded-xl overflow-hidden border border-slate-800 bg-slate-900 hover:border-sky-500/60 transition">' +
               '<img src="' + src + '" alt="Photo gallery image" loading="lazy" ' +
                 'class="w-full h-full object-cover hover:scale-105 transition duration-500" />' +
             '</div>' +
           '</a>'
         );
+      }
+
+      // Safety net: the slideshow is CSS-animation driven. If a browser or an
+      // accessibility setting ever suppresses that animation, fall back to a
+      // requestAnimationFrame loop so the gallery still scrolls by itself.
+      function ensureAutoScroll(count) {
+        requestAnimationFrame(function () {
+          const cs = getComputedStyle(track);
+          const seconds = parseFloat(cs.animationDuration) || 0;
+          const running = cs.animationName !== 'none' && seconds > 0.05 && cs.animationIterationCount !== '1';
+          if (running) return;
+
+          const half = track.scrollWidth / 2;
+          if (!half) return;
+          const pxPerSecond = half / (count * 5);
+          let offset = 0;
+          let last = performance.now();
+          (function step(now) {
+            const dt = Math.min((now - last) / 1000, 0.1);
+            last = now;
+            offset = (offset + pxPerSecond * dt) % half;
+            track.style.transform = 'translateX(' + (-offset).toFixed(2) + 'px)';
+            requestAnimationFrame(step);
+          })(last);
+        });
       }
 
       function render(images) {
@@ -1174,6 +1261,7 @@
         track.innerHTML = images.map(itemHtml).join('') + images.map(itemHtml).join('');
         // 5 seconds of scroll per photo (right-to-left marquee).
         track.style.setProperty('--marquee-duration', (images.length * 5) + 's');
+        ensureAutoScroll(images.length);
       }
 
       async function load() {
@@ -1351,7 +1439,7 @@
         const wrap = document.createElement('div');
         wrap.className = 'flex justify-start';
         wrap.id = 'mohi-bot-typing';
-        wrap.innerHTML = '<div class="px-3 py-2 rounded-2xl rounded-bl-sm bg-slate-800/90 border border-slate-700 text-slate-400 text-[13px]"><span class="animate-pulse">typing…</span></div>';
+        wrap.innerHTML = '<div class="spotlight px-3 py-2 rounded-2xl rounded-bl-sm bg-slate-800/90 border border-slate-700 text-slate-400 text-[13px]"><span class="animate-pulse">typing…</span></div>';
         messages.appendChild(wrap);
         messages.scrollTop = messages.scrollHeight;
       }
@@ -1467,6 +1555,126 @@
             '&body=' + encodeURIComponent(messageText(v)),
             '_blank'
           );
+        });
+      }
+    })();
+  </script>
+  <!-- ===== Theme, reading progress, scrollspy, card spotlight ===== -->
+  <script>
+    (function () {
+      'use strict';
+      var root = document.documentElement;
+      var meta = document.getElementById('meta-theme-color');
+      var mq = window.matchMedia('(prefers-color-scheme: light)');
+
+      function storedPref() {
+        try {
+          var v = localStorage.getItem('mohi-theme');
+          return (v === 'light' || v === 'dark') ? v : null;
+        } catch (e) { return null; }
+      }
+
+      function resolved() {
+        return storedPref() || (mq.matches ? 'light' : 'dark');
+      }
+
+      function paint(theme) {
+        root.classList.toggle('light', theme === 'light');
+        root.dataset.theme = theme;
+        root.dataset.themePref = storedPref() || 'system';
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#faf9f6' : '#070a12');
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.setAttribute('aria-label', 'Switch to ' + (theme === 'light' ? 'dark' : 'light') + ' theme');
+      }
+
+      function apply(theme, animate, originEvent) {
+        if (!animate || !document.startViewTransition || !originEvent) {
+          paint(theme);
+          return;
+        }
+        var x = originEvent.clientX, y = originEvent.clientY;
+        var transition = document.startViewTransition(function () { paint(theme); });
+        transition.ready.then(function () {
+          var r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+          root.animate(
+            { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + r + 'px at ' + x + 'px ' + y + 'px)'] },
+            { duration: 420, easing: 'cubic-bezier(.4,0,.2,1)', pseudoElement: '::view-transition-new(root)' }
+          );
+        }).catch(function () {});
+      }
+
+      paint(resolved());
+
+      // Follow the OS only while the visitor has not picked a theme themselves.
+      mq.addEventListener('change', function () {
+        if (!storedPref()) apply(mq.matches ? 'light' : 'dark', false);
+      });
+
+      var toggle = document.getElementById('theme-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', function (e) {
+          var next = resolved() === 'light' ? 'dark' : 'light';
+          try { localStorage.setItem('mohi-theme', next); } catch (err) {}
+          apply(next, true, e);
+        });
+      }
+
+      // ---- Reading progress -------------------------------------------
+      var bar = document.getElementById('scroll-progress');
+      if (bar) {
+        var ticking = false;
+        var updateBar = function () {
+          var h = document.documentElement.scrollHeight - innerHeight;
+          bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, scrollY / h) : 0) + ')';
+          ticking = false;
+        };
+        addEventListener('scroll', function () {
+          if (!ticking) { ticking = true; requestAnimationFrame(updateBar); }
+        }, { passive: true });
+        addEventListener('resize', updateBar, { passive: true });
+        updateBar();
+      }
+
+      // ---- Scrollspy for the section jump bar --------------------------
+      var nav = document.querySelector('.section-nav');
+      if (nav && 'IntersectionObserver' in window) {
+        var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+        var byId = {};
+        links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            links.forEach(function (a) { a.classList.remove('is-active'); });
+            var active = byId[entry.target.id];
+            if (!active) return;
+            active.classList.add('is-active');
+            // keep the active chip visible in the horizontally scrolled bar
+            var left = active.offsetLeft - nav.clientWidth / 2 + active.clientWidth / 2;
+            if (Math.abs(nav.scrollLeft - left) > 40) nav.scrollTo({ left: left, behavior: 'smooth' });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        Object.keys(byId).forEach(function (id) {
+          var sec = document.getElementById(id);
+          if (sec) spy.observe(sec);
+        });
+      }
+
+      // ---- PWA: register the offline shell -----------------------------
+      if ('serviceWorker' in navigator &&
+          (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+        addEventListener('load', function () {
+          navigator.serviceWorker.register('sw.js').catch(function () { /* offline shell is optional */ });
+        });
+      }
+
+      // ---- Card spotlight (pointer only) -------------------------------
+      if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.querySelectorAll('.spotlight').forEach(function (card) {
+          card.addEventListener('pointermove', function (e) {
+            var r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+            card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+          });
         });
       }
     })();

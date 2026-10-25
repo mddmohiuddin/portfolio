@@ -1,0 +1,16 @@
+{
+  "name": "mohi-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Static portfolio site for Md. Mohi Uddin Chowdhury",
+  "scripts": {
+    "build": "tailwindcss -i ./src/app.css -o ./assets/site.css --minify && node scripts/vendor-assets.mjs",
+    "dev": "tailwindcss -i ./src/app.css -o ./assets/site.css --watch"
+  },
+  "devDependencies": {
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "lucide": "^0.544.0",
+    "tailwindcss": "^3.4.17"
+  }
+}
