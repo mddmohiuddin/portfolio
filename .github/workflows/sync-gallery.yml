@@ -1,0 +1,67 @@
+# Auto-syncs the Photo Gallery from the shared Google Photos album.
+#
+# IMPORTANT: GitHub only reads workflows from `.github/workflows/`.
+# This file used to live in `github/workflows/` (no leading dot) and a stray
+# 1-byte `.github` *file* sat in the repo root, so the schedule never ran.
+#
+# Runs every 6 hours and on manual "Run workflow". Writes gallery.json, which
+# the website loads — so album changes appear without editing the site.
+#
+# One-time setup: Repo -> Settings -> Actions -> General -> Workflow permissions
+# -> select "Read and write permissions" -> Save.
+
+name: Sync Photo Gallery
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # every 6 hours (UTC)
+  workflow_dispatch:         # adds a "Run workflow" button in the Actions tab
+
+# Never let two syncs race for the same commit.
+concurrency:
+  group: sync-gallery
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Always work against the default branch, whichever branch triggered it.
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Read Google Photos album
+        env:
+          # Optional: point at a different album without touching the script.
+          PHOTOS_ALBUM_URL: ${{ vars.PHOTOS_ALBUM_URL }}
+        run: node scripts/sync-gallery.mjs
+
+      - name: Show result
+        run: |
+          node -e "const d=require('./gallery.json');console.log('photos:',d.count,'| updatedAt:',d.updatedAt)"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add gallery.json
+          if git diff --staged --quiet; then
+            echo "No photo changes — nothing to commit."
+            exit 0
+          fi
+          git commit -m "chore: sync photo gallery from Google Photos"
+          # The default branch may have moved on while we were fetching.
+          git pull --rebase --autostash origin "${{ github.event.repository.default_branch }}"
+          git push

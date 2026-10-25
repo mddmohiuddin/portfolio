@@ -1,6 +1,6 @@
 /* Service worker — offline shell for the portfolio.
    Bump CACHE_VERSION whenever the precached files change. */
-const CACHE_VERSION = 'mohi-v2';
+const CACHE_VERSION = 'mohi-v3';
 const PRECACHE = [
   './',
   './index.html',
@@ -36,6 +36,10 @@ self.addEventListener('fetch', (event) => {
 
   // Gallery photos live on Google's CDN — never cache those.
   if (!sameOrigin) return;
+
+  // gallery.json is rewritten every 6 hours by the sync Action. It must always
+  // come from the network, otherwise the cached copy hides new photos.
+  if (url.pathname.endsWith('/gallery.json')) return;
 
   // Navigation: network first, fall back to the cached shell when offline.
   if (request.mode === 'navigate') {
