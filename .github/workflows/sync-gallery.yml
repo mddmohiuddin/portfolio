@@ -16,6 +16,12 @@ on:
   schedule:
     - cron: '0 */6 * * *'   # every 6 hours (UTC)
   workflow_dispatch:         # adds a "Run workflow" button in the Actions tab
+  push:
+    # Self-test: editing the sync itself runs it once immediately, so a broken
+    # parser or a revoked album link surfaces right away instead of in 6 hours.
+    paths:
+      - '.github/workflows/sync-gallery.yml'
+      - 'scripts/sync-gallery.mjs'
 
 # Never let two syncs race for the same commit.
 concurrency:
