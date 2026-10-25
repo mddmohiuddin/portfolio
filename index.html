@@ -1269,7 +1269,10 @@
         try {
           const ctrl = new AbortController();
           const timer = setTimeout(function () { ctrl.abort(); }, 5000);
-          const res = await fetch('gallery.json', {
+          // no-store + a per-load query keeps stale copies out of the HTTP
+          // cache, so a fresh gallery.json from the Action shows up immediately.
+          const res = await fetch('gallery.json?v=' + Date.now(), {
+            cache: 'no-store',
             headers: { Accept: 'application/json' },
             signal: ctrl.signal,
           });

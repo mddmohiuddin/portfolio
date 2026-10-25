@@ -48,6 +48,19 @@ GitHub's file picker only selects files — folders can't be chosen. Two options
 - You never edit the website or any link — just manage the album in Google Photos.
   (To sync sooner: Actions tab → Sync Photo Gallery → **Run workflow**.)
 
+### Troubleshooting the sync
+
+| Symptom | Cause / fix |
+| --- | --- |
+| Actions tab shows **no** "Sync Photo Gallery" workflow | The file must be at `.github/workflows/sync-gallery.yml` — **with the leading dot**. A plain `github/workflows/` folder is invisible to GitHub. (This is exactly what broke it before.) |
+| Workflow runs but ends red with `No photos found` | Album link sharing is off. Google Photos → album → Share → **Create link**, then run again. |
+| Workflow runs but ends red with `Resource not accessible` / push rejected | Settings → Actions → General → Workflow permissions → **Read and write permissions** → Save. |
+| Workflow is green but the site shows old photos | Browser/PWA cache. `index.html` fetches `gallery.json?v=<timestamp>` with `cache: 'no-store'`, and `sw.js` never caches `gallery.json`. Hard-refresh once (Ctrl+Shift+R) after deploying this version. |
+| Scheduled runs stopped | GitHub disables schedules on repos with 60 days of no activity — just re-enable from the Actions tab. |
+
+Verify locally with `node scripts/sync-gallery.mjs` (needs internet access to
+`photos.app.goo.gl`). `GALLERY_DEBUG=1` prints how many candidate URLs were parsed.
+
 ## Extras on the site
 
 - **Ask me about Mohi** — an offline chatbot widget (bottom-right) that answers
