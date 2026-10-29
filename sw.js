@@ -1,6 +1,6 @@
 /* Service worker — offline shell for the portfolio.
    Bump CACHE_VERSION whenever the precached files change. */
-const CACHE_VERSION = 'mohi-v3';
+const CACHE_VERSION = 'mohi-v4';
 const PRECACHE = [
   './',
   './index.html',
@@ -10,6 +10,7 @@ const PRECACHE = [
   './assets/fonts/instrument-serif-400-italic.woff2',
   './profile.png',
   './favicon.svg',
+  './assets/Academic-CV-Mohi.pdf',
   './manifest.json',
 ];
 

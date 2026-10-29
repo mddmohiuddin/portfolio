@@ -409,13 +409,19 @@ section[id]::after {
 
 /* ---- Bento metrics: instrument read-outs ---- */
 .bento { counter-reset: tile; }
-.bento > div {
+.bento > div,
+.bento > a {
   counter-increment: tile;
   position: relative;
   transition: border-color .25s ease, transform .25s ease, background-color .25s ease;
 }
-.bento > div:hover { transform: translateY(-2px); border-color: rgb(var(--sky-500) / 0.45); }
-.bento > div::before {
+.bento > div:hover,
+.bento > a:hover { transform: translateY(-2px); border-color: rgb(var(--sky-500) / 0.45); }
+/* The CV tile is an <a>, so it needs the same counter + hover treatment
+   as the <div> tiles (it is tile 03 in reading order). */
+.bento > a { counter-increment: tile; }
+.bento > div::before,
+.bento > a::before {
   content: "0" counter(tile);
   position: absolute;
   top: 0.55rem;
