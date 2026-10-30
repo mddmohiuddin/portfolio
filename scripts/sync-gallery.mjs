@@ -21,6 +21,12 @@ const DEFAULT_ALBUM_URL = 'https://photos.app.goo.gl/yH8CZFdgC3h5Sxw69';
 // Size suffix for display in the marquee (Google's image server honors it).
 const DISPLAY_SIZE = '=w800';
 
+// Album order newest-first: the shared album page lists photos oldest -> newest,
+// so the list is reversed before it is written. This only changes the order of
+// gallery.json (and therefore the order the marquee starts from) — nothing else.
+// Set to false to go back to the album's own order.
+const NEWEST_FIRST = true;
+
 // How many times to retry a flaky fetch before giving up.
 const ATTEMPTS = 3;
 
@@ -55,6 +61,15 @@ export function extractPhotos(html) {
     images.push(base + DISPLAY_SIZE);
   }
   return images;
+}
+
+/**
+ * Puts the newest photo first. Google's album page hands the photos back in
+ * chronological order, so reversing gives "most recent first" without needing
+ * timestamps (the /pw/ URLs carry no date).
+ */
+export function orderPhotos(images, newestFirst = NEWEST_FIRST) {
+  return newestFirst ? images.slice().reverse() : images.slice();
 }
 
 async function fetchAlbum(albumUrl) {
@@ -107,7 +122,7 @@ async function main() {
 
   const html = await fetchAlbum(albumUrl);
 
-  const images = extractPhotos(html);
+  const images = orderPhotos(extractPhotos(html));
   if (!images.length) {
     // Never overwrite a good gallery.json with an empty one.
     throw new Error(
