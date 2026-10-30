@@ -124,3 +124,51 @@ falls back to the OS `prefers-color-scheme` when nothing is stored.
 - `assets/icon-192.png`, `assets/icon-512.png` — PWA icons
 - `manifest.json` + `sw.js` — installable app with an offline shell
 - `sitemap.xml`, `robots.txt`, `404.html` — crawler + error page
+
+## Visitor counts & analytics
+
+Nothing third-party loads unless you switch it on.
+
+### The "N views" badge (already working)
+
+The footer badge uses [Abacus](https://abacus.jasoncameron.dev) — a free counter
+with **no account, no cookies and no personal data**. It increments at most once
+per browser per day (`localStorage`), and shows nothing at all if the API is
+unreachable instead of inventing a number. While developing on
+`localhost`, hits go to a throwaway `portfolio-preview` key so your real total
+is never inflated.
+
+Config lives at the top of `src/quick-actions.js`:
+
+```js
+views: { enabled: true, namespace: 'mddmohiuddin.github.io', key: 'portfolio' }
+```
+
+Change the namespace if you ever move to a custom domain — otherwise the new
+site starts a fresh count.
+
+### Full analytics (optional, 2 minutes)
+
+1. Sign up at [goatcounter.com](https://www.goatcounter.com/) and pick a code,
+   e.g. `mohimohiuddin` → `https://mohimohiuddin.goatcounter.com`.
+2. Set it in `src/quick-actions.js`:
+
+   ```js
+   goatcounter: 'mohimohiuddin',   // '' disables analytics entirely
+   ```
+
+3. `npm run build` and push. `count.js` is only injected when a code is present.
+
+GoatCounter is cookieless, so **no cookie banner is needed**. It reports views,
+unique visitors, referrers, countries and screen sizes — never names or emails.
+GitHub's own "Insights → Traffic" only counts repo page views, not website visits.
+
+## Keyboard & quick actions
+
+| Shortcut / control | Action |
+| --- | --- |
+| `Ctrl` / `Cmd` + `K` (or the ⌘ button in the header) | Command palette: jump to any section, copy the email address, open the CV, print the page, toggle the theme, open WhatsApp / LinkedIn / CESI Lab |
+| `Esc` | Close the palette or the photo viewer |
+| `←` / `→` inside the photo viewer | Previous / next gallery photo |
+| Header moon/sun button | Light / dark / system theme |
+| "Save as PDF" in Contact | Opens the print dialog with the paper stylesheet |

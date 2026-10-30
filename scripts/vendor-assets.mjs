@@ -33,6 +33,10 @@ for (const [from, to] of FONTS) {
 }
 console.log(`fonts: ${FONTS.length} files, ${(bytes / 1024).toFixed(0)} KB total`);
 
+// ---- copy the site JS (source lives in src/, output in assets/) --------
+await copyFile('src/quick-actions.js', 'assets/site.js');
+console.log(`js: assets/site.js ${((await stat('assets/site.js')).size / 1024).toFixed(1)} KB`);
+
 // ---- inject the icon sprite -------------------------------------------
 const sprite = await readFile('src/_sprite.html', 'utf8');
 const START = '<!-- ICON-SPRITE:START -->';
