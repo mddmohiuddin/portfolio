@@ -115,8 +115,12 @@ npm run dev          # Tailwind watch mode while editing
 
 Light / dark is a single `html.light` class driven by CSS variables — no
 `dark:` variants anywhere. Boot script in `<head>` applies the saved choice
-before first paint; the header toggle writes `localStorage['mohi-theme']` and
-falls back to the OS `prefers-color-scheme` when nothing is stored.
+before first paint.
+
+**The site always opens in dark mode.** It deliberately does *not* follow the OS
+`prefers-color-scheme`; only an explicit choice made with the header toggle (or
+the palette action) switches a visitor to light, and that choice is remembered in
+`localStorage['mohi-theme']`.
 
 ### Generated assets
 
@@ -167,7 +171,7 @@ GitHub's own "Insights → Traffic" only counts repo page views, not website vis
 
 | Shortcut / control | Action |
 | --- | --- |
-| `Ctrl` / `Cmd` + `K` (or the ⌘ button in the header) | Command palette: jump to any section, copy the email address, open the CV, print the page, toggle the theme, open WhatsApp / LinkedIn / CESI Lab |
+| `Ctrl` / `Cmd` + `K` | Command palette: jump to any section, copy the email address, open the CV, print the page, toggle the theme, open WhatsApp / LinkedIn / CESI Lab (keyboard only — there is no on-screen button) |
 | `Esc` | Close the palette or the photo viewer |
 | `←` / `→` inside the photo viewer | Previous / next gallery photo |
 | Header moon/sun button | Light / dark / system theme |

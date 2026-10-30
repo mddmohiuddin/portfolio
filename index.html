@@ -18,13 +18,14 @@
   <script>
     (function () {
       try {
+        // Dark is the default for every visitor. Only an explicit choice made
+        // with the header toggle (or the palette action) switches to light.
         var saved = localStorage.getItem('mohi-theme');
-        var systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-        var theme = (saved === 'light' || saved === 'dark') ? saved : (systemLight ? 'light' : 'dark');
+        var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
         var root = document.documentElement;
         root.classList.toggle('light', theme === 'light');
         root.dataset.theme = theme;
-        root.dataset.themePref = (saved === 'light' || saved === 'dark') ? saved : 'system';
+        root.dataset.themePref = theme;
       } catch (e) { /* localStorage disabled — fall back to dark */ }
     })();
   </script>
@@ -92,7 +93,6 @@
 <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
 <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
 <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
-<symbol id="i-command" viewBox="0 0 24 24"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></symbol>
 <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
 <symbol id="i-cpu" viewBox="0 0 24 24"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/></symbol>
 <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol>
@@ -148,12 +148,6 @@
       </a>
 
       <div class="flex items-center gap-2 sm:gap-3">
-        <button id="palette-open" type="button"
-          class="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg border border-slate-700 bg-slate-900/70 text-slate-400 hover:text-slate-100 hover:border-sky-500/60 transition"
-          aria-label="Open the quick action palette">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-command"/></svg>
-          <kbd class="palette-kbd hidden sm:inline-block">K</kbd>
-        </button>
         <button id="theme-toggle" type="button" aria-label="Toggle colour theme"
           class="w-9 h-9 rounded-lg border border-slate-700 bg-slate-900/70 flex items-center justify-center transition shrink-0">
           <svg class="icon-sun w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -1162,7 +1156,7 @@
 
   <!-- Extra sprite symbols used only by JS-built UI (kept out of the layout) -->
   <template id="icon-extras" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-command"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-printer"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-printer"/></svg>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-x"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chevron-left"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chevron-right"/></svg>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-eye"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-copy"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-sun"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-moon"/></svg>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-download"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-book-open"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-briefcase"/></svg>
@@ -1646,7 +1640,6 @@
       'use strict';
       var root = document.documentElement;
       var meta = document.getElementById('meta-theme-color');
-      var mq = window.matchMedia('(prefers-color-scheme: light)');
 
       function storedPref() {
         try {
@@ -1656,13 +1649,14 @@
       }
 
       function resolved() {
-        return storedPref() || (mq.matches ? 'light' : 'dark');
+        // Dark unless the visitor picked light themselves.
+        return storedPref() || 'dark';
       }
 
       function paint(theme) {
         root.classList.toggle('light', theme === 'light');
         root.dataset.theme = theme;
-        root.dataset.themePref = storedPref() || 'system';
+        root.dataset.themePref = resolved();
         if (meta) meta.setAttribute('content', theme === 'light' ? '#faf9f6' : '#070a12');
         var btn = document.getElementById('theme-toggle');
         if (btn) btn.setAttribute('aria-label', 'Switch to ' + (theme === 'light' ? 'dark' : 'light') + ' theme');
@@ -1685,11 +1679,6 @@
       }
 
       paint(resolved());
-
-      // Follow the OS only while the visitor has not picked a theme themselves.
-      mq.addEventListener('change', function () {
-        if (!storedPref()) apply(mq.matches ? 'light' : 'dark', false);
-      });
 
       var toggle = document.getElementById('theme-toggle');
       if (toggle) {
