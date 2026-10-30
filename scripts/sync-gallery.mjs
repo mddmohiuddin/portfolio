@@ -21,11 +21,12 @@ const DEFAULT_ALBUM_URL = 'https://photos.app.goo.gl/yH8CZFdgC3h5Sxw69';
 // Size suffix for display in the marquee (Google's image server honors it).
 const DISPLAY_SIZE = '=w800';
 
-// Album order newest-first: the shared album page lists photos oldest -> newest,
-// so the list is reversed before it is written. This only changes the order of
-// gallery.json (and therefore the order the marquee starts from) — nothing else.
-// Set to false to go back to the album's own order.
-const NEWEST_FIRST = true;
+// The website mirrors the album order, exactly as it is arranged in Google
+// Photos / Drive: drag photos around in the album and the gallery follows on the
+// next sync. `extractPhotos()` reads the URLs in page order, so nothing is
+// re-sorted here.
+// Set NEWEST_FIRST = true to reverse that order (newest photo first) instead.
+const NEWEST_FIRST = false;
 
 // How many times to retry a flaky fetch before giving up.
 const ATTEMPTS = 3;
@@ -64,9 +65,11 @@ export function extractPhotos(html) {
 }
 
 /**
- * Puts the newest photo first. Google's album page hands the photos back in
- * chronological order, so reversing gives "most recent first" without needing
- * timestamps (the /pw/ URLs carry no date).
+ * Returns the photo list in the order it should be published.
+ *
+ * Default: untouched — i.e. the album's own order, so whatever the owner arranges
+ * in Google Photos is what visitors see. Pass `true` to get newest-first instead.
+ * The /pw/ URLs carry no date, so no other sorting is possible.
  */
 export function orderPhotos(images, newestFirst = NEWEST_FIRST) {
   return newestFirst ? images.slice().reverse() : images.slice();
