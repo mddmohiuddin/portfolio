@@ -117,10 +117,15 @@ Light / dark is a single `html.light` class driven by CSS variables — no
 `dark:` variants anywhere. Boot script in `<head>` applies the saved choice
 before first paint.
 
-**The site always opens in dark mode.** It deliberately does *not* follow the OS
-`prefers-color-scheme`; only an explicit choice made with the header toggle (or
-the palette action) switches a visitor to light, and that choice is remembered in
-`localStorage['mohi-theme']`.
+**The site always opens in dark mode**, exactly like it did before the toggle
+existed:
+
+- It deliberately does *not* follow the OS `prefers-color-scheme`.
+- The header toggle (or the palette action) switches to light **for the current
+  view only** — a reload or a new visit opens dark again, so no visitor is ever
+  dropped into light mode.
+- The boot script also removes any `localStorage['mohi-theme']` left behind by an
+  older build, so returning visitors are not stuck in light.
 
 ### Generated assets
 

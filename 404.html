@@ -11,11 +11,10 @@
   <script>
     (function () {
       try {
-        // Dark by default; only an explicit choice from the main page wins.
-        var saved = localStorage.getItem('mohi-theme');
-        var light = saved === 'light';
-        document.documentElement.classList.toggle('light', light);
-        document.documentElement.dataset.theme = light ? 'light' : 'dark';
+        // Always dark, matching the main page.
+        document.documentElement.classList.remove('light');
+        document.documentElement.dataset.theme = 'dark';
+        try { localStorage.removeItem('mohi-theme'); } catch (e) {}
       } catch (e) {}
     })();
   </script>
