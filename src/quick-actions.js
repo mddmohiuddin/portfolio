@@ -85,7 +85,6 @@
     var dlg = $('#palette');
     var input = $('#palette-input');
     var list = $('#palette-list');
-    var trigger = $('#palette-open');
     if (!dlg || !input || !list) return;
 
     var icon = function (name) {
@@ -237,10 +236,12 @@
     // Clicking the dimmed backdrop closes the dialog.
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
 
-    if (trigger) trigger.addEventListener('click', open);
-
     document.addEventListener('keydown', function (e) {
       var isK = (e.key === 'k' || e.key === 'K');
+      // ignore the shortcut while the visitor is typing in a form field
+      var el = e.target;
+      var typing = el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
+      if (typing && !(e.metaKey || e.ctrlKey)) return;
       if (isK && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         if (dlg.open) dlg.close(); else open();
