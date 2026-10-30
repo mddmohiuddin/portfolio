@@ -129,7 +129,7 @@ existed:
 
 ### Generated assets
 
-- `assets/og-cover.png` — 1200×630 social share card
+- `assets/og-cover.jpg` — 1200×630 social share card (75 KB, progressive JPEG)
 - `assets/icon-192.png`, `assets/icon-512.png` — PWA icons
 - `manifest.json` + `sw.js` — installable app with an offline shell
 - `sitemap.xml`, `robots.txt`, `404.html` — crawler + error page
