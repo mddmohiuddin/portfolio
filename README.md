@@ -43,10 +43,12 @@ GitHub's file picker only selects files — folders can't be chosen. Two options
   **https://photos.app.goo.gl/yH8CZFdgC3h5Sxw69**
 - A GitHub Action (`.github/workflows/sync-gallery.yml`) re-reads the album
   **every 6 hours** and updates `gallery.json` automatically.
-- Order: **newest first**. The album page lists photos oldest → newest, so
-  `sync-gallery.mjs` reverses the list before writing `gallery.json`
-  (`NEWEST_FIRST = true`) — new photos therefore appear at the *start* of the
-  marquee. Nothing else about the gallery changes.
+- Order: **whatever order you set in the album**. Drag photos around in Google
+  Photos (or in the Drive folder) and the gallery follows on the next sync — the
+  sync publishes the album's own order and never re-sorts by itself. Reordering
+  counts as a change, so the Action commits it even when no photo was added or
+  removed. To flip the whole list instead, set `NEWEST_FIRST = true` in
+  `scripts/sync-gallery.mjs`.
 - **Add a photo** to the album → it appears on the website after the next sync.
 - **Delete a photo** from the album → it disappears after the next sync.
 - You never edit the website or any link — just manage the album in Google Photos.
